@@ -29,26 +29,51 @@
                 </ul>
             </div>
         </div>
-    
         
+        <% 
+            String name=(String)session.getAttribute("sessname"); 
+            out.print("Hello User: You have entered the name: "+name); 
+        %> 
+    
+       <% 
+        if(request.getParameter("buttonName") != null) {
+               session.invalidate();
+        }
+    %>
+       
+    <FORM NAME="form1" METHOD="POST">
+        <INPUT TYPE="HIDDEN" NAME="buttonName">
+        <INPUT TYPE="BUTTON" VALUE="Button 1" ONCLICK="button1()">
+    </FORM>
+    
+    <SCRIPT LANGUAGE="JavaScript">
+        
+        function button1()
+        {
+            document.form1.buttonName.value = "yes";
+            form1.submit();
+        } 
+       
+    </SCRIPT>
+       
        <!--tela de login--> 
        <br> <br>
        
         <div class="container">
             
-           <form class="form-horizontal">
+           <form action="questionario.jsp" class="form-horizontal">
                                       
                <div class="control-group">
                    <h4 class="text-left"> Login: <h4>
                    <label class="control-label" for="inputEmail">Email</label>
                    <div class="controls">
-                       <input type="text" id="inputEmail" placeholder="Email">
+                       <input type="text" id="inputEmail" placeholder="Email" name="inputEmail">
                    </div>
                </div>
                <div class="control-group">
                    <label class="control-label" for="inputPassword">Password</label>
                    <div class="controls">
-                       <input type="password" id="inputPassword" placeholder="Password">
+                       <input type="password" id="inputPassword" placeholder="Password" name="inputPassword">
                    </div>
                </div>
                <div class="control-group">
@@ -271,7 +296,7 @@
      
      <hr>
      <div class="container">
-         <h6 class="text-center"> Analize e Desenvolvimento de Sistemas - 4° Ciclo Noturno</h6>
+         <h6 class="text-center"> Análisee e Desenvolvimento de Sistemas - 4° Ciclo Noturno</h6>
      </div>
     </body>
 </html>
