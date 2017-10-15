@@ -36,7 +36,7 @@
         
         <% 
             String uname=request.getParameter("inputEmail"); 
-            out.print("Welcome "+ uname);
+            out.print("Olá, "+ uname);
             session.setAttribute("sessname",uname); 
         %> 
        

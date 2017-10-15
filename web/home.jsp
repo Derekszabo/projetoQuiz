@@ -32,7 +32,7 @@
         
         <% 
             String name=(String)session.getAttribute("sessname"); 
-            out.print("Hello User: You have entered the name: "+name); 
+            out.print("Olá, "+name); 
         %> 
     
        <% 
