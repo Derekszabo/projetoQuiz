@@ -31,8 +31,15 @@
         </div>
         
         <% 
+            if(session.getAttribute("sessname") != null){
             String name=(String)session.getAttribute("sessname"); 
-            out.print("Olá, "+name); 
+            out.print("Olá, "+name);%>
+            <FORM NAME="form1" METHOD="POST">
+        <INPUT TYPE="HIDDEN" NAME="buttonName">
+        <INPUT TYPE="BUTTON" VALUE="FINALIZAR SESSÃO" ONCLICK="button1()">
+    </FORM><%
+            
+            }
         %> 
     
        <% 
@@ -41,10 +48,7 @@
         }
     %>
        
-    <FORM NAME="form1" METHOD="POST">
-        <INPUT TYPE="HIDDEN" NAME="buttonName">
-        <INPUT TYPE="BUTTON" VALUE="Button 1" ONCLICK="button1()">
-    </FORM>
+    
     
     <SCRIPT LANGUAGE="JavaScript">
         
