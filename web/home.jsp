@@ -208,27 +208,27 @@
     <div class="row">
         <div class="span3">
             <center>
-             <img src="img/derek.jpg" style="width:150px; height:150px" class="img-rounded">   
+             <img src="derek.jpg" style="width:150px; height:150px" class="img-rounded">   
             </center>
          
           <center> <p style="margin-top: 10px">Derek Szabó </p> </center>  
         </div>
         <div class="span3">
             <center>
-            <img src="img/marjorie.jpg" style="width:150px; height:150px" class="img-rounded"> 
+            <img src="marjorie.jpg" style="width:150px; height:150px" class="img-rounded"> 
             </center>
           
           <center> <p style="margin-top: 10px">Marjorie Ribeiro </p> </center>
         </div>
         <div class="span3">
             <center>
-            <img src="img/rodrigo6.jpg"  style="width:150px; height:150px" class="img-rounded">
+            <img src="rodrigo6.jpg"  style="width:150px; height:150px" class="img-rounded">
             </center>
             <center><p style="margin-top: 10px">Rodrigo Figueiredo </p> </center>
         </div>
         <div class="span3">
             <center>
-           <img src="img/vinicius.jpg" style="width:150px; height:150px" class="img-rounded"> 
+           <img src="vinicius.jpg" style="width:150px; height:150px" class="img-rounded"> 
             </center>
            <center><p style="margin-top: 10px">Vinícius Lima </p> </center> 
         </div>

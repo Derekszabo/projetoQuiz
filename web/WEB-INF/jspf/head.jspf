@@ -1,0 +1,10 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <title>JSP</title>
