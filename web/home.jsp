@@ -3,19 +3,13 @@
     Created on : 13/10/2017, 05:01:32
     Author     : Derek
 --%>
-
+<%@page import="br.com.fatecpg.projetoQuiz.DB"%>
+<%@page import="br.com.fatecpg.projetoQuiz.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-        <link href="css/bootstrap-responsive.css" rel="stylesheet" media="screen">
-        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <title>JSP</title>
+       <%@include file="WEB-INF/jspf/head.jspf" %>
     </head>
     <body>
         
@@ -30,64 +24,44 @@
             </div>
         </div>
         
-        <% 
-            if(session.getAttribute("sessname") != null){
-            String name=(String)session.getAttribute("sessname"); 
-            out.print("Olá, "+name);%>
-            <FORM NAME="form1" METHOD="POST">
-        <INPUT TYPE="HIDDEN" NAME="buttonName">
-        <INPUT TYPE="BUTTON" VALUE="FINALIZAR SESSÃO" ONCLICK="button1()">
-    </FORM><%
-            
-            }
-        %> 
-    
-       <% 
-        if(request.getParameter("buttonName") != null) {
-               session.invalidate();
-        }
-    %>
-       
-    
-    
-    <SCRIPT LANGUAGE="JavaScript">
-        
-        function button1()
-        {
-            document.form1.buttonName.value = "yes";
-            form1.submit();
-        } 
-       
-    </SCRIPT>
-       
+              
        <!--tela de login--> 
        <br> <br>
        
         <div class="container">
             
-           <form action="questionario.jsp" class="form-horizontal">
+           <form class="form-horizontal">
                                       
                <div class="control-group">
                    <h4 class="text-left"> Login: <h4>
-                   <label class="control-label" for="inputEmail">Email</label>
+                   <label class="control-label" for="inputUsuario">Email</label>
                    <div class="controls">
-                       <input type="text" id="inputEmail" placeholder="Email" name="inputEmail">
+                       <input type="text" id="inputEmail" placeholder="Usuario" name="inputUsuario">
                    </div>
                </div>
-               <div class="control-group">
-                   <label class="control-label" for="inputPassword">Password</label>
-                   <div class="controls">
-                       <input type="password" id="inputPassword" placeholder="Password" name="inputPassword">
-                   </div>
-               </div>
+               
                <div class="control-group">
                    <div class="controls">
-                      
-                       <button type="submit" class="btn">Sign in</button>
+                       <button type="submit" name="btnUsuario" class="btn">Sign in</button>
                    </div>
                </div>
            </form>
-            </div>         
+            </div>
+       
+       <%try {
+           if(request.getParameter("btnUsuario") != null){
+               String nomeUsuario = request.getParameter("inputUsuario");
+               
+               Usuario usuario = new Usuario();
+               
+               usuario.setNome(nomeUsuario);
+               
+               DB.getUsuarios().add (usuario);   
+           }
+       } catch(Exception ex) {
+           %><script>alert("Digite um valor válido!");<%
+       }      
+       %>
        
        <br> <br> <br>
        
@@ -211,43 +185,8 @@
     <div>
         <center>
             <table class="table table-condensed table-bordered" style="width: 50%">
-                <caption><strong>Últimos Testes Realizados</strong></caption>
-                <thead>
-                    <tr>
-                        <th>Índice</th>
-                        <th>Teste</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>teste A</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>teste B</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>3</td>
-                        <td>teste C</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>4</td>
-                        <td>teste D</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>5</td>
-                        <td>teste E</td>
-                    </tr>
-                </tbody>
+                <caption><strong>Nomes do usuário</strong></caption>
+                   
             </table>  
             
         </center>
@@ -269,27 +208,27 @@
     <div class="row">
         <div class="span3">
             <center>
-             <img src="derek.jpg" style="width:150px; height:150px" class="img-rounded">   
+             <img src="img/derek.jpg" style="width:150px; height:150px" class="img-rounded">   
             </center>
          
           <center> <p style="margin-top: 10px">Derek Szabó </p> </center>  
         </div>
         <div class="span3">
             <center>
-            <img src="marjorie.jpg" style="width:150px; height:150px" class="img-rounded"> 
+            <img src="img/marjorie.jpg" style="width:150px; height:150px" class="img-rounded"> 
             </center>
           
           <center> <p style="margin-top: 10px">Marjorie Ribeiro </p> </center>
         </div>
         <div class="span3">
             <center>
-            <img src="rodrigo6.jpg"  style="width:150px; height:150px" class="img-rounded">
+            <img src="img/rodrigo6.jpg"  style="width:150px; height:150px" class="img-rounded">
             </center>
             <center><p style="margin-top: 10px">Rodrigo Figueiredo </p> </center>
         </div>
         <div class="span3">
             <center>
-           <img src="vinicius.jpg" style="width:150px; height:150px" class="img-rounded"> 
+           <img src="img/vinicius.jpg" style="width:150px; height:150px" class="img-rounded"> 
             </center>
            <center><p style="margin-top: 10px">Vinícius Lima </p> </center> 
         </div>
@@ -299,8 +238,8 @@
    
      
      <hr>
-     <div class="container">
-         <h6 class="text-center"> Análisee e Desenvolvimento de Sistemas - 4° Ciclo Noturno</h6>
-     </div>
-    </body>
+     
+     <%@include file="WEB-INF/jspf/footer.jspf" %>
+     
+     </body>
 </html>

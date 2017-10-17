@@ -1,25 +1,8 @@
-<%-- 
-    Document   : Quiz
-    Created on : 13/10/2017, 05:01:07
-    Author     : Derek
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-        <link href="css/bootstrap-responsive.css" rel="stylesheet" media="screen">
-        <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>JSP Page</title>
+       <%@include file="WEB-INF/jspf/head.jspf" %>
     </head>
     <body>
         
@@ -34,11 +17,7 @@
             </div>
         </div>
         
-        <% 
-            String uname=request.getParameter("inputEmail"); 
-            out.print("Olá, "+ uname);
-            session.setAttribute("sessname",uname); 
-        %> 
+        
        
         
         <!--questionario--> 
@@ -127,9 +106,8 @@
                
                
      <hr>
-     <div class="container">
-         <h6 class="text-center"> Analize e Desenvolvimento de Sistemas - 4° Ciclo Noturno</h6>
-     </div> 
+     
+     <%@include file="WEB-INF/jspf/footer.jspf" %>
      
     </body>
 </html>
