@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.fatecpg.projetoQuiz;
+import java.util.ArrayList;
 
-/**
- *
- * @author Derek
- */
 public class DB {
-    
+    private static ArrayList<Usuario> usuarios;
+     public static ArrayList<Usuario> getUsuarios () {
+        if (usuarios==null) {
+            usuarios = new ArrayList<>();
+        }
+        return usuarios;
+    }
 }
