@@ -125,7 +125,7 @@
     <div class="row-fluid">
         <div class="span6">
             
-              <table class="table table-condensed table-bordered">
+            <table class="table table-condensed table-bordered">
                 <caption><strong>Últimos Testes Realizados</strong></caption>
                 
                 <thead>
@@ -158,42 +158,21 @@
         <div class="span6">
             <table class="table table-condensed table-bordered">
                 <caption><strong>Melhores Testes Realizados</strong></caption>
+                
                 <thead>
                     <tr>
-                        <th>Índice</th>
-                        <th>Teste</th>
+                        <th>Nome</th>
+                        <th>Resultado</th>
                     </tr>
                 </thead>
-                <tbody>
+                <%for (Usuario r: DB.getUsuarios()){%>
                     <tr>
-                        <td>1</td>
-                        <td>teste A</td>
+                        <td><%=r.getNome()%></td>
+                        <td><%=r.getResultadoTeste()%></td>
                     </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>teste B</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>3</td>
-                        <td>teste C</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>4</td>
-                        <td>teste D</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>5</td>
-                        <td>teste E</td>
-                    </tr>
-                </tbody>
+                <%}%>
+                
+                
             </table>
         
         </div>
@@ -207,8 +186,17 @@
     <div class="container">
     <h4>Resultados do Usuário: <%=name%></h4>
     <br> 
-    
-    <h5>Média: 0<h5>
+    <%int media=0;
+    int testes=0;
+    for (int i=DB.getUsuarios().size(); i>0;i--){
+        Usuario c = DB.getUsuarios().get(i-1);
+        if (c.getNome().equals(name)){
+            testes++;
+            media+=c.getResultadoTeste();
+        }
+    }
+    media=media/testes;%>
+    <h5>Média: <%=media%><h5>
     </div>
     
     <br> <br>
@@ -225,9 +213,7 @@
                         <th>Resultado</th>
                     </tr>
                 </thead>
-                <%listar=5;
-                if (DB.getUsuarios().size()<5)
-                    listar=DB.getUsuarios().size();
+                <%listar=0;
                 for (int i=DB.getUsuarios().size(); i>0;i--){
                     Usuario c = DB.getUsuarios().get(i-1);
                     if (c.getNome().equals(name)){%>
@@ -235,7 +221,10 @@
                             <td><%=c.getNome()%></td>
                             <td><%=c.getResultadoTeste()%></td>
                         </tr>
-                    <%}
+                    <%listar++;
+                    if (listar>=5)
+                        break;
+                    }
                 }%>
                 
                 
