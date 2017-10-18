@@ -1,12 +1,11 @@
 package br.com.fatecpg.projetoQuiz;
 
+import java.util.Date;
+
 public class Usuario {
     private String nome;
-    private static double media;
-    private static String dataTeste [];
-    private static double resultadoTeste [];
-    private static String alternativasTeste [];
-      
+    private String dataTeste;
+    private double resultadoTeste;
 
     public String getNome() {
         return nome;
@@ -16,37 +15,20 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public double getMedia() {
-        return media;
-    }
-
-    public void setMedia(double media) {
-        this.media = media;
-    }
-
-    public String[] getDataTeste() {
+    public String getDataTeste() {
         return dataTeste;
     }
 
-    public void setDataTeste(String[] dataTeste) {
+    public void setDataTeste(String dataTeste) {
         this.dataTeste = dataTeste;
     }
 
-    public double[] getResultadoTeste() {
+    public double getResultadoTeste() {
         return resultadoTeste;
     }
 
-    public void setResultadoTeste(double[] resultadoTeste) {
+    public void setResultadoTeste(double resultadoTeste) {
         this.resultadoTeste = resultadoTeste;
     }
-
-    public String[] getAlternativasTeste() {
-        return alternativasTeste;
-    }
-
-    public void setAlternativasTeste(String[] alternativasTeste) {
-        this.alternativasTeste = alternativasTeste;
-    }
-    
-    
+       
 }

@@ -2,10 +2,10 @@ package br.com.fatecpg.projetoQuiz;
 
 public class Questao {
     private String pergunta;
-    private String resposta;
+    private int resposta;
     private String alternativas[];
     
-    public Questao(String p, String r, String[] alter){
+    public Questao(String p, int r, String[] alter){
         pergunta=p;
         resposta=r;
         alternativas=alter;
@@ -19,11 +19,11 @@ public class Questao {
         this.pergunta = pergunta;
     }
 
-    public String getResposta() {
+    public int getResposta() {
         return resposta;
     }
 
-    public void setResposta(String resposta) {
+    public void setResposta(int resposta) {
         this.resposta = resposta;
     }
 

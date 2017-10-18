@@ -26,7 +26,8 @@
             </div>
         </div>
         
-        <%if (request.getParameter("usuario") == "deslogado"){%><script>alert("Para acessar o questionário é necessário estar logado!");</script><%}%>
+        <%String name="";
+        if (request.getParameter("usuario") == "deslogado"){%><script>alert("Para acessar o questionário é necessário estar logado!");</script><%}%>
         <!--tela de login--> 
         <br> <br>
        
@@ -39,11 +40,11 @@
            if(request.getParameter("btnUsuario") != null){
                String nomeUsuario = request.getParameter("inputUsuario");
                
-               Usuario usuario = new Usuario();
+               //Usuario usuario = new Usuario();
                
-               usuario.setNome(nomeUsuario);
+               //usuario.setNome(nomeUsuario);
                
-               DB.getUsuarios().add (usuario);
+               //DB.getUsuarios().add (usuario);
                
                session.setAttribute("nomeSessao", nomeUsuario);
                
@@ -84,7 +85,7 @@
                  
            </form>
         <%} else {
-        String name=(String)session.getAttribute("nomeSessao"); %>
+        name=(String)session.getAttribute("nomeSessao"); %>
            <div class = "container">      
            <p>Olá, <%=name%></p>
         <br>
@@ -126,42 +127,25 @@
             
               <table class="table table-condensed table-bordered">
                 <caption><strong>Últimos Testes Realizados</strong></caption>
+                
                 <thead>
                     <tr>
-                        <th>Índice</th>
-                        <th>Teste</th>
+                        <th>Nome</th>
+                        <th>Resultado</th>
                     </tr>
                 </thead>
-                <tbody>
+                <%int listar=5;
+                if (DB.getUsuarios().size()<5)
+                    listar=DB.getUsuarios().size();
+                for (int i=DB.getUsuarios().size(); i>DB.getUsuarios().size()-listar;i--){
+                    Usuario c = DB.getUsuarios().get(i-1);%>
                     <tr>
-                        <td>1</td>
-                        <td>teste A</td>
+                        <td><%=c.getNome()%></td>
+                        <td><%=c.getResultadoTeste()%></td>
                     </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>teste B</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>3</td>
-                        <td>teste C</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>4</td>
-                        <td>teste D</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>5</td>
-                        <td>teste E</td>
-                    </tr>
-                </tbody>
+                <%}%>
+                
+                
             </table>  
                 
            
@@ -217,35 +201,47 @@
        </div>
     
     <br> <br> <br>
-    
+    <%if (name!=""){%>
     <!--resultados do usuario--> 
     
     <div class="container">
-    <h4>Resultados do Usuário: </h4>
+    <h4>Resultados do Usuário: <%=name%></h4>
     <br> 
     
-    <h5>Média: <%=Quiz.getMedia()%><h5>
+    <h5>Média: 0<h5>
     </div>
     
     <br> <br>
     
    <div class="container">
-    <h4>Últimos Testes do Usuário: </h4> 
+    <h4>Últimos Testes: </h4> 
     <br>
-    <div>
-        <center>
-            <table class="table table-condensed table-bordered" style="width: 50%">
-                <caption><strong>Nomes do Usuário</strong></caption>
-                   
-            </table>  
-            
-        </center>
-       
-        
+    <table class="table table-condensed table-bordered">
+                <caption><strong>Últimos Testes Realizados</strong></caption>
+                
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+                <%listar=5;
+                if (DB.getUsuarios().size()<5)
+                    listar=DB.getUsuarios().size();
+                for (int i=DB.getUsuarios().size(); i>0;i--){
+                    Usuario c = DB.getUsuarios().get(i-1);
+                    if (c.getNome().equals(name)){%>
+                        <tr>
+                            <td><%=c.getNome()%></td>
+                            <td><%=c.getResultadoTeste()%></td>
+                        </tr>
+                    <%}
+                }%>
+                
+                
+            </table>
     </div>
-    
-    </div>
-    
+    <%}%>
     <!--about us--> 
     <br> <br>
     <hr>

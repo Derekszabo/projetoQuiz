@@ -1,6 +1,10 @@
+<%@page import="java.text.DateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="br.com.fatecpg.projetoQuiz.Questao"%>
 <%@page import="br.com.fatecpg.projetoQuiz.Quiz"%>
+<%@page import="br.com.fatecpg.projetoQuiz.DB"%>
+<%@page import="br.com.fatecpg.projetoQuiz.Usuario"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,16 +17,28 @@
         }
         if(request.getParameter("add") != null){
             int acertos=0;
+            int quest=1;
             for (Questao q: Quiz.getQuestoes()){
-                String resposta=request.getParameter(q.getResposta());
-                if(resposta!=null){
-                    if(resposta.equals(q.getResposta()))
+                String resposta=request.getParameter(""+quest);
+                if(resposta!=null){                    
+                    if(Integer.parseInt(resposta)==q.getResposta()){
                         acertos++;
+                    }
                 }
+                quest++;
             }
-            Quiz.quantidade++;
-            Quiz.soma+=(100.0*((double)acertos/10.0));
-            response.sendRedirect(request.getContextPath()+"home.jsp");
+            
+            Date d = new Date();
+
+            String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+            
+            Usuario r = new Usuario();
+            r.setNome((String)session.getAttribute("nomeSessao"));
+            r.setDataTeste(dStr);
+            r.setResultadoTeste((100.0*((double)acertos/10.0)));
+            DB.getUsuarios().add (r);
+            
+            response.sendRedirect("home.jsp");
         }%>
         <div class="navbar navbar-inverse">
             <div class="navbar-inner">
@@ -42,20 +58,28 @@
        <h2 class="text-center"> Questionário: <h2>
           
     <div class="container" style="text-align: center">
-        <%for (Questao q: Quiz.getQuestoes()){%>
+        <%int quest=1;
+        for (Questao q: Quiz.getQuestoes()){%>
   <h4><%=q.getPergunta()%></h4>
   
   <form>
     <label class="radio-inline">
-      <input type="radio" name="<%=q.getPergunta()%>" value="<%=q.getAlternativas()[0]%>"><%=q.getAlternativas()[0]%>
+      <input type="radio" name="<%=quest%>" value="1"><%=q.getAlternativas()[0]%>
     </label>
     <label class="radio-inline">
-      <input type="radio" name="<%=q.getPergunta()%>" value="<%=q.getAlternativas()[1]%>"><%=q.getAlternativas()[1]%>
+      <input type="radio" name="<%=quest%>" value="2"><%=q.getAlternativas()[1]%>
     </label>
     <label class="radio-inline">
-      <input type="radio" name="<%=q.getPergunta()%>" value="<%=q.getAlternativas()[2]%>"><%=q.getAlternativas()[2]%>
+      <input type="radio" name="<%=quest%>" value="3"><%=q.getAlternativas()[2]%>
     </label>
-    <%}%>
+    <label class="radio-inline">
+      <input type="radio" name="<%=quest%>" value="4"><%=q.getAlternativas()[3]%>
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="<%=quest%>" value="5"><%=q.getAlternativas()[4]%>
+    </label><br/>
+    <%quest++;
+    }%>
     <input type="submit" name="add" value="Finalizar teste" />
   </form> 
                
