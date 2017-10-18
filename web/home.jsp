@@ -13,6 +13,7 @@
     </head>
     <body>
         
+        
         <!--menu-->
         <div class="navbar navbar-inverse">
             <div class="navbar-inner">
@@ -30,6 +31,31 @@
        
         <div class="container">
             
+           
+            </div>
+       
+       <%try {
+           if(request.getParameter("btnUsuario") != null){
+               String nomeUsuario = request.getParameter("inputUsuario");
+               
+               Usuario usuario = new Usuario();
+               
+               usuario.setNome(nomeUsuario);
+               
+               DB.getUsuarios().add (usuario);
+               
+               session.setAttribute("nomeSessao", nomeUsuario);
+               
+           } else {
+              
+           }
+           
+       } catch(Exception ex) {
+           %><script>alert("Digite um valor válido!");<%
+       }      
+       %>
+       
+       <%if(session.getAttribute("nomeSessao") == null || session.getAttribute("nomeSessao").equals("")) {%>
            <form class="form-horizontal">
                                       
                <div class="control-group">
@@ -46,23 +72,36 @@
                    </div>
                </div>
            </form>
-            </div>
-       
-       <%try {
-           if(request.getParameter("btnUsuario") != null){
-               String nomeUsuario = request.getParameter("inputUsuario");
-               
-               Usuario usuario = new Usuario();
-               
-               usuario.setNome(nomeUsuario);
-               
-               DB.getUsuarios().add (usuario);   
-           }
-       } catch(Exception ex) {
-           %><script>alert("Digite um valor válido!");<%
-       }      
-       %>
-       
+        <%} else {
+        String name=(String)session.getAttribute("nomeSessao"); %>
+                
+        Olá, <%=name%>
+        
+        <FORM NAME="form1" METHOD="POST">
+        <INPUT TYPE="HIDDEN" NAME="buttonName">
+        <INPUT TYPE="BUTTON" VALUE="Deslogar" ONCLICK="button1()">
+    </FORM>
+        
+        <%}%>
+            
+            <% 
+        if(request.getParameter("buttonName") != null) {
+               session.invalidate();
+               response.sendRedirect("home.jsp");
+        }
+    %>
+
+    
+
+    <SCRIPT LANGUAGE="JavaScript">
+        
+        function button1()
+        {
+            document.form1.buttonName.value = "yes";
+            form1.submit();
+        } 
+        
+    </SCRIPT>
        <br> <br> <br>
        
     <!--tabela 10 ultimos testes e tabela 10 melhores notas--> 
