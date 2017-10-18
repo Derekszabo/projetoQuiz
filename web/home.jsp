@@ -56,32 +56,42 @@
        %>
        
        <%if(session.getAttribute("nomeSessao") == null || session.getAttribute("nomeSessao").equals("")) {%>
-           <form class="form-horizontal">
+     
+       
+        <form class="form-horizontal">
                                       
                <div class="control-group">
-                   <h4 class="text-left"> Login: <h4>
-                   <label class="control-label" for="inputUsuario">Email</label>
+               <div class ="container">
+                       
+                       <h4 class="text-left"> Login: <h4>
+                       </div>  
+                        
+                       
+                       <label class="control-label" for="inputUsuario">Email:</label>
                    <div class="controls">
-                       <input type="text" id="inputEmail" placeholder="Usuario" name="inputUsuario">
+                       <input type="email" id="inputEmail" placeholder="Usuario@email.com" name="inputUsuario" required>
                    </div>
                </div>
                
+               
+                       
                <div class="control-group">
                    <div class="controls">
                        <button type="submit" name="btnUsuario" class="btn">Sign in</button>
                    </div>
                </div>
+                 
            </form>
         <%} else {
         String name=(String)session.getAttribute("nomeSessao"); %>
-                
-        Olá, <%=name%>
-        
+           <div class = "container">      
+           <p>Olá, <%=name%></p>
+        <br>
         <FORM NAME="form1" METHOD="POST">
         <INPUT TYPE="HIDDEN" NAME="buttonName">
-        <INPUT TYPE="BUTTON" VALUE="Deslogar" ONCLICK="button1()">
+        <INPUT TYPE="BUTTON" VALUE="Deslogar" ONCLICK="button1()" class="btn">
     </FORM>
-        
+        </div>
         <%}%>
             
             <% 
@@ -224,7 +234,7 @@
     <div>
         <center>
             <table class="table table-condensed table-bordered" style="width: 50%">
-                <caption><strong>Nomes do usuário</strong></caption>
+                <caption><strong>Nomes do Usuário</strong></caption>
                    
             </table>  
             
