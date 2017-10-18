@@ -5,6 +5,7 @@
 --%>
 <%@page import="br.com.fatecpg.projetoQuiz.DB"%>
 <%@page import="br.com.fatecpg.projetoQuiz.Usuario"%>
+<%@page import="br.com.fatecpg.projetoQuiz.Quiz"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,9 +26,9 @@
             </div>
         </div>
         
-              
-       <!--tela de login--> 
-       <br> <br>
+        <%if (request.getParameter("usuario") == "deslogado"){%><script>alert("Para acessar o questionário é necessário estar logado!");</script><%}%>
+        <!--tela de login--> 
+        <br> <br>
        
         <div class="container">
             
@@ -51,7 +52,7 @@
            }
            
        } catch(Exception ex) {
-           %><script>alert("Digite um valor válido!");<%
+           %><script>alert("Digite um valor válido!");</script><%
        }      
        %>
        
@@ -77,7 +78,7 @@
                        
                <div class="control-group">
                    <div class="controls">
-                       <button type="submit" name="btnUsuario" class="btn">Sign in</button>
+                       <button type="submit" name="btnUsuario" class="btn">Logar</button>
                    </div>
                </div>
                  
@@ -223,7 +224,7 @@
     <h4>Resultados do Usuário: </h4>
     <br> 
     
-    <h5>Média: xxx<h5>
+    <h5>Média: <%=Quiz.getMedia()%><h5>
     </div>
     
     <br> <br>
